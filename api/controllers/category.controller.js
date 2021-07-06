@@ -1,6 +1,6 @@
 const { CategoryModel } = require('../models/category.model')
 
-exports.getAllCategories = (req, res) {
+exports.getAllCategories = (req, res) => {
   CategoryModel
     .find()
     .then(categories => res.status(200).json(categories))
