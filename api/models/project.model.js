@@ -21,8 +21,7 @@ const projectSchema = new mongoose.Schema({
     type: [commentSchema],
   },
   ideas: {
-    type: String,
-    required: true
+    type: String
   },
   requirements: {
     type: Array,
