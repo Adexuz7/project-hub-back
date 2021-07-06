@@ -1,23 +1,21 @@
 const mongoose = require('mongoose')
 
 const commentSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
   author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  },
+  comment: {
     type: String,
     required: true
   },
   likes: {
-    type: Number
+    type: Number,
+    default: 0
   },
   date: {
-    type: Date
+    type: Date,
+    required: true
   }
 })
 
