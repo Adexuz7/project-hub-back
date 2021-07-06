@@ -36,7 +36,17 @@ exports.getProjectById = (req, res) => {
 }
 
 
-// function updateProject () => {}
+exports.updateProjectById = (req, res) => {
+  Project.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then((result) => {
+      console.log(result)
+      res.status(200).json(result)
+    })
+    .catch((err) => {
+      console.log('Error')
+      res.json(err)
+    })
+}
 
 
 // function deleteProject () => {}
