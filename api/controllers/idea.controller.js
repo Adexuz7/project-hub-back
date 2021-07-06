@@ -11,7 +11,7 @@ exports.createNewIdea = (req, res) => {
   const user = res.locals.user
   const request = req.body
 
-  request.author = user._id
+  request.author = user.id
   request.date = new Date()
 
   IdeaModel

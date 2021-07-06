@@ -5,6 +5,30 @@
 baseUrl = http://localhost:3000/api
 ```
 
+### Auth
+| Endpoint | What it does |
+| --- | --- |
+| ``` /auth/whoami ``` | GET user currently logged in |
+| ``` /auth/signup ``` | POST register a new user |
+| ``` /auth/login ``` | POST user log in |
+
+Sign up:
+```
+{
+    "name": "Name",
+    "email": "email@email.com",
+    "password": "password"
+}
+```
+
+Log in:
+```
+{
+    "email":"email@email.com",
+    "password":"password"
+}
+```
+
 ### Categories
 | Endpoint | What it does |
 | --- | --- |

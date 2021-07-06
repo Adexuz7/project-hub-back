@@ -1,4 +1,5 @@
 const ideaRouter = require('express').Router()
+const { checkAuth } = require('../../utils')
 
 const {
   getAllIdeas,
@@ -7,6 +8,6 @@ const {
 
 ideaRouter
   .get('/', getAllIdeas)
-  .post('/', createNewIdea)
+  .post('/', checkAuth, createNewIdea)
 
 exports.ideaRouter = ideaRouter
