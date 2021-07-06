@@ -12,7 +12,16 @@ exports.getAllProjects = (req, res) => {
 }
 
 
-// function addProject () => {}
+exports.addProject = (req, res) => {
+  Project.create(req.body)
+    .then((result) => {
+      res.status(200).json(result)
+    })
+    .catch((err) => {
+      console.log('Error')
+      res.json(err)
+    })
+}
 
 
 // function getProjectById () => {}
