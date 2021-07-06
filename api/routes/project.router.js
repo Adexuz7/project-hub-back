@@ -2,11 +2,13 @@ const router = require('express').Router();
 
 const {
   getAllProjects,
-  addProject
+  addProject,
+  getProjectById
 
-} = require('../controller/project.controller')
+} = require('../controllers/project.controller')
 
 router.get('/', getAllProjects)
 router.post('/', addProject)
+router.get('/:id', getProjectById)
 
 exports.projectRouter = router

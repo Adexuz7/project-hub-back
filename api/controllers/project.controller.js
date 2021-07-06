@@ -24,7 +24,16 @@ exports.addProject = (req, res) => {
 }
 
 
-// function getProjectById () => {}
+exports.getProjectById = (req, res) => {
+  Project.findById(req.params.id)
+    .then((result) => {
+      res.status(200).json(result)
+    })
+    .catch((err) => {
+      console.log('Error')
+      res.json(err)
+    })
+}
 
 
 // function updateProject () => {}
