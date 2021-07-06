@@ -20,16 +20,6 @@ exports.createComment = (req, res) => {
           res.status(200).json(project)
         }
       })
-
-      // Project.update({
-      //   _id: project._id
-      // }, {$push:{comments: {
-      //   comment: req.body.comment,
-      //   author: req.body.authorId,
-      //   date: new Date()
-      // }}})
-      // console.log('project after update: ', project)
-
     })
     .catch((err) => {
       console.log('Error')
@@ -37,18 +27,26 @@ exports.createComment = (req, res) => {
     })
 }
 
-// exports.updateComment = () => {}
-
-// exports.deleteComment = () => {}
-
-
-exports.updateProjectById = (req, res) => {
-  Project.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then((result) => {
+exports.deleteComment = (req, res) => {
+  console.log(req.params.projectId, req.params.commentId)
+  Project.findById(req.params.projectId)
+  .then((project) => {
+    project.comments.remove(req.params.commentId)
+    project.save()
+    .then(result => {
       res.status(200).json(result)
     })
-    .catch((err) => {
-      console.log('Error')
-      res.json(err)
+    .catch(err => {
+      console.log_('Error')
+      res.status(500).json(err)
     })
+
+  })
+  .catch((err) => {
+    console.log('Error')
+    res.json(err)
+  })
 }
+
+
+// exports.updateComment = () => {}
