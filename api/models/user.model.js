@@ -3,33 +3,24 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
-  }
-  email:{
+    required: [true, 'Name is required']
+  },
+  email: {
     type: String,
-    required: true,
+    required: [true, 'Email is required'],
     unique: true
-  }
-
-  password:{
+  },
+  password: {
     type: String,
-    required:true
-  }
-  image:{
-    type: String,
-  }
-  ideas:{
-   type: Array,
-  }
-  followers:{
-    type: Array,
-  }
-  follows:{
-    type: Array
-  }
+    required: [true, 'Password is required']
+  },
+  image: String,
+  bio: String,
+  url: String,
+  ideas: [mongoose.Types.ObjectId],
+  followers: [mongoose.Types.ObjectId],
+  follows: [mongoose.Types.ObjectId]
 
 })
 
-const userModel = mongoose.model('users', userSchema)
-
-module.exports = userModel
+exports.UserModel = mongoose.model('users', userSchema)
