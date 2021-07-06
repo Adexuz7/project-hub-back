@@ -8,7 +8,7 @@ exports.getAllProjects = (req, res) => {
     .catch((err) => {
       console.log("Error")
       res.json(err)
-    }) 
+    })
 }
 
 
@@ -37,9 +37,8 @@ exports.getProjectById = (req, res) => {
 
 
 exports.updateProjectById = (req, res) => {
-  Project.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  Project.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((result) => {
-      console.log(result)
       res.status(200).json(result)
     })
     .catch((err) => {
@@ -49,4 +48,13 @@ exports.updateProjectById = (req, res) => {
 }
 
 
-// function deleteProject () => {}
+exports.deleteProjectById = (req, res) => {
+  Project.findByIdAndRemove(req.params.id)
+    .then((result) => {
+      res.status(200).json(result)
+    })
+    .catch((err) => {
+      conso.log('Error')
+      res.json(err)
+    })
+}
