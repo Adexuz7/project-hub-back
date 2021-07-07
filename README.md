@@ -33,6 +33,7 @@ Log in:
 | Endpoint | What it does |
 | --- | --- |
 | ``` /categories ``` | GET all categories |
+| ``` /categories/:categoryId ``` | GET a category |
 
 ### Ideas
 | Endpoint | What it does |

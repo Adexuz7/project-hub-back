@@ -23,7 +23,7 @@ const ideaSchema = new mongoose.Schema({
     required: [true, 'Author is required']
   },
   date: Date,
-  likes: Number,
+  likes: [mongoose.Types.ObjectId],
   comments: [commentSchema],
   projects: [mongoose.Types.ObjectId]
 })

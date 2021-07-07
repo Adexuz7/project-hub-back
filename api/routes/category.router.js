@@ -1,10 +1,12 @@
 const categoryRouter = require('express').Router()
 
 const {
-  getAllCategories
+  getAllCategories,
+  getCategory
 } = require('../controllers/category.controller')
 
 categoryRouter
   .get('/', getAllCategories)
+  .get('/:categoryId', getCategory)
 
 exports.categoryRouter = categoryRouter
