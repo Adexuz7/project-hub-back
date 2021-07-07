@@ -15,7 +15,7 @@ const projectSchema = new mongoose.Schema({
     required: true
   },
   likes: {
-    type: Number,
+    type: Array,
   },
   comments: {
     type: [commentSchema],

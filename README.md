@@ -48,3 +48,9 @@ Log in:
 | ``` /projects/:id ``` | GET a project by an id |
 | ``` /projects/:id ``` | UPDATE a project by an id |
 | ``` /projects/:id ``` | DELETE a project by an id|
+
+### Comments
+| Endpoint | What it does |
+| --- | --- |
+| ``` /projects/:id/comments ``` | POST a new comment|
+| ``` /projects/:id/comments/:id ``` | DELETE a comment of a project|
