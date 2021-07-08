@@ -1,4 +1,4 @@
-# project-finder-backend
+# Project Hub
 
 ## Endpoints
 ```
