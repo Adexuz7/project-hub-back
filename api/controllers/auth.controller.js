@@ -19,6 +19,7 @@ exports.signup = (req, res) => {
           })
           .then(user => {
             const userData = {
+              id: user.id,
               name: user.name,
               email: user.email
             }
@@ -47,6 +48,7 @@ exports.login = (req, res) => {
             return res.json('Wrong email or password', err)
           }
           const userData = {
+            id: user.id,
             name: user.name,
             email: user.email
           }
@@ -65,6 +67,7 @@ exports.login = (req, res) => {
 
 exports.whoami = (req, res) => {
   res.json({
+    id: res.locals.user.id,
     name: res.locals.user.name,
     email: res.locals.user.email
   })
