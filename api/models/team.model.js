@@ -10,7 +10,7 @@ const teamSchema = new mongoose.Schema({
   description:{
     type: String
   },
-  member:{
+  members:{
     type:Array,
     require: true
   },

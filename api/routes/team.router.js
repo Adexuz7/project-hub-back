@@ -3,10 +3,14 @@ const router =require('express').Router()
 const{
   createTeam,
   addMemberToTeam,
-  getTeamByName
+  getTeamById,
+  leaveTeam
 }=require('../controllers/team.controller')
 
-router.get('/:teamId', getTeamByName)
+router.get('/:teamId', getTeamById)
 router.post('/', createTeam)
+router.put('/',addMemberToTeam)
+router.put('/',leaveTeam
+)
 
 exports.teamRouter = router

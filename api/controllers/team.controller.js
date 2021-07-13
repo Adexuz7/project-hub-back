@@ -16,7 +16,14 @@ exports.addMemberToTeam = (req, res) => {
     .catch(err => res.status(500).json(err))   
 }
 
-exports.getTeamByName = (req, res) => {
+exports.leaveTeam = (req,res) => {
+  TeamModel
+    .findOneAndUpdate(res.locals.user.id, {$pull:{members: res.locals.user.id}, new:true})
+    .then(team => res.status(200).send('You leave the team'))
+    .catch(err => res.status(500).json(err))
+}
+
+exports.getTeamById = (req, res) => {
   console.log('params', req)
   TeamModel
   .findById(req.params.teamId)
