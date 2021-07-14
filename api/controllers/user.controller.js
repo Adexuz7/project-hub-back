@@ -13,3 +13,10 @@ exports.getUser = (req, res) => {
     .then(user => res.status(200).json(user))
     .catch(err => res.status(500).json(err))
 }
+
+exports.createUser = (req, res) => {
+  UserModel
+    .create(req.body)
+    .then(user => res.status(200).json(user))
+    .catch(err => res.status(500).json(err))
+}
