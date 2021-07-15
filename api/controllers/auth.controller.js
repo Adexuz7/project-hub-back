@@ -66,9 +66,5 @@ exports.login = (req, res) => {
 }
 
 exports.whoami = (req, res) => {
-  res.json({
-    id: res.locals.user.id,
-    name: res.locals.user.name,
-    email: res.locals.user.email
-  })
+  res.json({ user: res.locals.user })
 }
