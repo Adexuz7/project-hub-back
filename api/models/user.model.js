@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Password is required']
   },
   image: String,
+  banner: String,
   bio: String,
   url: String,
   ideas: [mongoose.Types.ObjectId],
