@@ -14,11 +14,11 @@ const {
 } = require('../controllers/project.controller')
 
 router.get('/', getAllProjects)
-router.post('/', addProject)
 router.get('/:id', getProjectById)
+router.post('/', addProject)
+router.post('/:id/comments', createComment)
 router.put('/:id', updateProjectById)
 router.delete('/:id', deleteProjectById)
-router.post('/:id/comments', createComment)
 router.delete('/:projectId/comments/:commentId', deleteComment)
 
 exports.projectRouter = router

@@ -1,7 +1,5 @@
 const authRouter = require('express').Router()
-const {
-  checkAuth
-} = require('../../utils')
+const { checkAuth } = require('../utils')
 
 const {
   signup,

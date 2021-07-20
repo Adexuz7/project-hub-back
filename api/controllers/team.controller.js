@@ -11,22 +11,24 @@ exports.createTeam = (req, res) =>  {
 
 exports.addMemberToTeam = (req, res) => {
   TeamModel
-    .findOneAndUpdate(res.locals.user.id, {$push:{ members: res.locals.user.id },new:true})
-    .then(team => res.status(200).send('User added correctly'))
+    .findOneAndUpdate(req.params.teamId, {$push:{ members: res.locals.user.id },new:true})
+    .then(team =>
+      res.status(200).send('User added correctly'))
     .catch(err => res.status(500).json(err))   
 }
 
 exports.leaveTeam = (req,res) => {
   TeamModel
     .findOneAndUpdate(res.locals.user.id, {$pull:{members: res.locals.user.id}, new:true})
-    .then(team => res.status(200).send('You leave the team'))
+    .then(team =>
+      
+       res.status(200).send('You leave the team'))
     .catch(err => res.status(500).json(err))
 }
 
 exports.getTeamById = (req, res) => {
-  console.log('params', req)
   TeamModel
-  .findById(req.params.teamId)
-  .then(team => res.status(200).json(team))
-  .catch(err => res.status(500).json(err))
+    .findById(req.params.teamId)
+    .then(team => res.status(200).json(team))
+    .catch(err => res.status(500).json(err))
 }

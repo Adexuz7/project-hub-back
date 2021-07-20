@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { UserModel } = require('../api/models/user.model')
+const { UserModel } = require('../models/user.model')
 
 exports.checkAuth = (req, res, next) => {
   jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET, (err, token) => {

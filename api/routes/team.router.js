@@ -1,4 +1,5 @@
-const router =require('express').Router()
+const router = require('express').Router()
+const { checkAuth } = require('../utils/index')
 
 const{
   createTeam,
@@ -9,8 +10,8 @@ const{
 
 router.get('/:teamId', getTeamById)
 router.post('/', createTeam)
-router.put('/',addMemberToTeam)
-router.put('/',leaveTeam
-)
+router.put('/:teamId', checkAuth, addMemberToTeam)
+router.put('/',leaveTeam)
+
 
 exports.teamRouter = router

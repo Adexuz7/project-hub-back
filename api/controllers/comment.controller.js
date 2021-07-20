@@ -1,8 +1,9 @@
 const Comment = require('../models/comment.model')
-const Project = require('../models/project.model')
+const { projectModel } = require('../models/project.model')
 
 exports.createComment = (req, res) => {
-  Project.findById(req.params.id)
+  projectModel
+    .findById(req.params.id)
     .then((project) => {
       const comment = {
         comment: req.body.comment,
@@ -21,31 +22,19 @@ exports.createComment = (req, res) => {
         }
       })
     })
-    .catch((err) => {
-      console.log('Error')
-      res.json(err)
-    })
+    .catch((err) => {res.json(err)})
 }
 
 exports.deleteComment = (req, res) => {
-  console.log(req.params.projectId, req.params.commentId)
-  Project.findById(req.params.projectId)
-  .then((project) => {
-    project.comments.remove(req.params.commentId)
-    project.save()
-    .then(result => {
-      res.status(200).json(result)
-    })
-    .catch(err => {
-      console.log_('Error')
-      res.status(500).json(err)
-    })
-
+  projectModel
+    .findById(req.params.projectId)
+    .then((project) => {
+     project.comments.remove(req.params.commentId)
+     project.save()
+      .then(result => { res.status(200).json(result)})
+      .catch(err => {res.status(500).json(err) })
   })
-  .catch((err) => {
-    console.log('Error')
-    res.json(err)
-  })
+  .catch((err) => {res.json(err) })
 }
 
 
