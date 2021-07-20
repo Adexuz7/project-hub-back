@@ -9,7 +9,7 @@ exports.createTeam = (req, res) =>  {
     .catch(err => res.status(500).json(err))
 }
 
-exports.addMemberToTeam = (req, res) => {
+exports.addMyselfToTeam = (req, res) => {
   TeamModel
     .findOneAndUpdate(req.params.teamId)
     .then(team => {
@@ -24,9 +24,14 @@ exports.addMemberToTeam = (req, res) => {
     .catch(err => res.status(500).json(err))   
 }
 
+exports.inviteMemberToTeam = (req,res) => {
+  TeamModel
+    .findOne(req.params.userName)
+}
+
 exports.leaveTeam = (req,res) => {
   TeamModel
-    .findOneAndUpdate(res.locals.user.id, {$pull:{members: res.locals.user.id}, new:true})
+    .findOneAndUpdate(res.locals.user.id)
     .then(team => res.status(200).send('You leave the team'))
     .catch(err => res.status(500).json(err))
 }

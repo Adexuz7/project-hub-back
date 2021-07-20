@@ -15,6 +15,7 @@ exports.getUser = (req, res) => {
 }
 
 exports.createUser = (req, res) => {
+  console.log('uwu', req.body)
   UserModel
     .create(req.body)
     .then(user => res.status(200).json(user))
