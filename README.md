@@ -39,6 +39,7 @@ Log in:
 | Endpoint | What it does |
 | --- | --- |
 | ``` /ideas ``` | GET all ideas |
+| ``` /ideas/:id ``` | GET idea by id |
 | ``` /ideas ``` | POST a new idea |
 
 ### Projects
