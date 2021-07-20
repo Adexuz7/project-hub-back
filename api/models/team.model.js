@@ -1,23 +1,22 @@
-const mongoose =require('mongoose')
-
+const mongoose = require('mongoose')
 
 const teamSchema = new mongoose.Schema({
-  name:{
+  name: {
     type: String,
     require: true,
-    unique:[true, 'Team name already exist']
+    unique: [true, 'Team name already exist']
   },
-  description:{
+  description: {
     type: String
   },
-  members:{
-    type:Array,
+  members: {
+    type: Array,
     require: true
   },
-  projects:{
-    type:Array
+  projects: {
+    type: Array
   },
-  messages:{
+  messages: {
     type: Array
   }
 })

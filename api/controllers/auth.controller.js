@@ -4,7 +4,7 @@ const { UserModel } = require('../models/user.model')
 
 exports.signup = (req, res) => {
   const hashedPwd = bcrypt.hashSync(req.body.password, 10)
-  
+
   // delete req.body.password
 
   UserModel
@@ -18,7 +18,7 @@ exports.signup = (req, res) => {
             name: req.body.name,
             email: req.body.email,
             userName: req.body.userName,
-            // ...req.body, 
+            // ...req.body,
             password: hashedPwd
           })
           .then(user => {
@@ -51,6 +51,7 @@ exports.login = (req, res) => {
       if (user) {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
           console.log('entro al compare: ', result)
+          if (err) throw new Error(err)
           if (!result) {
             return res.status(403).json('Wrong email or password')
           }
@@ -65,7 +66,7 @@ exports.login = (req, res) => {
             process.env.SECRET,
             { expiresIn: '7d' }
           )
-          console.log('token: ',token)
+          console.log('token: ', token)
           return res.json({ token: token, ...userData })
         })
       }

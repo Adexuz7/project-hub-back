@@ -10,8 +10,7 @@ const commentSchema = new mongoose.Schema({
     required: true
   },
   likes: {
-    type: Array,
-    
+    type: Array
   },
   date: {
     type: Date,

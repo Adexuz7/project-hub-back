@@ -5,10 +5,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Name is required']
   },
-  userName:{
+  userName: {
     type: String,
-    required:[true, 'Username is required'],
-    unique:[true, 'Username already exist']
+    required: [true, 'Username is required'],
+    unique: [true, 'Username already exist']
   },
   email: {
     type: String,
@@ -23,9 +23,22 @@ const userSchema = new mongoose.Schema({
   banner: String,
   bio: String,
   url: String,
-  ideas: [mongoose.Types.ObjectId],
-  followers: [mongoose.Types.ObjectId],
-  follows: [mongoose.Types.ObjectId]
+  ideas: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ideas'
+  }],
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  }],
+  follows: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  }],
+  teams: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'teams'
+  }]
 
 })
 

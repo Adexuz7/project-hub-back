@@ -7,6 +7,7 @@ exports.checkAuth = (req, res, next) => {
 
     UserModel
       .findOne({ email: token.email })
+      .populate('teams')
       .then(user => {
         if (user) {
           res.locals.user = user
