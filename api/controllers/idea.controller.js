@@ -7,6 +7,13 @@ exports.getAllIdeas = (req, res) => {
     .catch(err => res.status(500).json(err))
 }
 
+exports.getIdea = (req, res) => {
+  IdeaModel
+    .findById(req.params.id)
+    .then(idea => res.status(200).json(idea))
+    .catch(err => res.status(500).json(err))
+}
+
 exports.createNewIdea = (req, res) => {
   const user = res.locals.user
   const request = req.body
