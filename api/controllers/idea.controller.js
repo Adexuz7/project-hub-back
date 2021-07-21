@@ -30,3 +30,18 @@ exports.createNewIdea = (req, res) => {
     })
     .catch(err => res.status(500).json(err))
 }
+
+exports.addLikesIdea = async (req, res) => {
+  console.log(req.params.ideaId)
+  const newIdea = await IdeaModel.findById(req.params.ideaId)
+
+  if (!newIdea.likes.includes(res.locals.user._id)) {
+    newIdea.likes.push(res.locals.user._id)
+  } else {
+    newIdea.likes.splice(newIdea.likes.indexOf(res.locals.user._id), 1)
+  }
+
+  await newIdea.save()
+
+  res.status(200).json(newIdea)
+}
