@@ -42,15 +42,12 @@ exports.signup = (req, res) => {
 }
 
 exports.login = (req, res) => {
-  console.log('entre al log in')
   UserModel
     .findOne({ email: req.body.email })
     .then(user => {
-      console.log('entro al findone: ', user)
       if (!user) res.status(404).send('User not found')
       if (user) {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
-          console.log('entro al compare: ', result)
           if (err) throw new Error(err)
           if (!result) {
             return res.status(403).json('Wrong email or password')
@@ -66,7 +63,6 @@ exports.login = (req, res) => {
             process.env.SECRET,
             { expiresIn: '7d' }
           )
-          console.log('token: ', token)
           return res.json({ token: token, ...userData })
         })
       }

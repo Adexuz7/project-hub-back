@@ -5,6 +5,7 @@ exports.createTeam = async (req, res) => {
   const user = res.locals.user
   try {
     req.body.members.push(user._id)
+
     const team = await TeamModel.create(req.body)
 
     user.teams.push(team._id)
@@ -39,7 +40,7 @@ exports.inviteMemberToTeam = (req, res) => {
 exports.leaveTeam = (req, res) => {
   TeamModel
     .findOneAndUpdate(res.locals.user.id)
-    .then(team => res.status(200).send('You leave the team'))
+    .then(team => res.status(200).send('You leave the team, sadly'))
     .catch(err => res.status(500).json(err))
 }
 
