@@ -6,8 +6,7 @@ exports.signup = (req, res) => {
   const hashedPwd = bcrypt.hashSync(req.body.password, 10)
 
   // delete req.body.password
-
-  UserModel
+  UserModel 
     .findOne({ email: req.body.email })
     .then(user => {
       if (user) {
@@ -27,7 +26,6 @@ exports.signup = (req, res) => {
               name: user.name,
               email: user.email
             }
-
             const token = jwt.sign(
               userData,
               process.env.SECRET,

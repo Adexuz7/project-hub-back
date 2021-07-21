@@ -23,9 +23,15 @@ const ideaSchema = new mongoose.Schema({
     required: [true, 'Author is required']
   },
   date: Date,
-  likes: [mongoose.Types.ObjectId],
+  likes:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'users'
+  }], 
   comments: [commentSchema],
-  projects: [mongoose.Types.ObjectId]
+  projects: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'projects'
+  }]
 })
 
 exports.IdeaModel = mongoose.model('ideas', ideaSchema)

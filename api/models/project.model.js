@@ -14,15 +14,17 @@ const projectSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  likes: {
-    type: Array,
-  },
+  likes:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:'categories'
+    }],
   comments: {
     type: [commentSchema],
   },
-  ideas: {
-    type: String
-  },
+  ideas: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'ideas'
+  }],
   requirements: {
     type: Array,
     required: true
@@ -39,7 +41,8 @@ const projectSchema = new mongoose.Schema({
 
   },
   issues: {
-    type: Array,
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'is'
   }
 })
 
