@@ -5,13 +5,15 @@ const {
   getAllIdeas,
   getIdea,
   createNewIdea,
-  addLikesIdea
+  addLikesIdea,
+  commentIdea
 } = require('../controllers/idea.controller')
 
 ideaRouter
   .get('/', getAllIdeas)
   .get('/:id', getIdea)
   .post('/', checkAuth, createNewIdea)
+  .post('/:id/comments', checkAuth, commentIdea)
   .put('/likes/:ideaId', checkAuth, addLikesIdea)
 
 exports.ideaRouter = ideaRouter
