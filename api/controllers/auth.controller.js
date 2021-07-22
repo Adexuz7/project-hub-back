@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { UserModel } = require('../models/user.model')
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
   const hashedPwd = bcrypt.hashSync(req.body.password, 10)
 
   // delete req.body.password

@@ -16,6 +16,8 @@ const ideaSchema = new mongoose.Schema({
   },
   difficulty: {
     type: String,
+    // enum:['easy', 'medium', 'hard'],
+    // default:'medium',
     required: [true, 'Difficulty is required']
   },
   author: {
