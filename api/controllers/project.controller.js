@@ -22,10 +22,9 @@ exports.addProject = async (req, res) => {
 
 exports.getProjectById = async (req, res) => {
   try {
-
     const project = await projectModel.findById(req.params.id)
 
-    res.status(200).json(result)
+    res.status(200).json(project)
   } catch (err) {
     res.status(500).json(err)
   }
