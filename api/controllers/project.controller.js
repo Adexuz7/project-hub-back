@@ -11,9 +11,10 @@ exports.getAllProjects = async (req, res) => {
 }
 
 exports.addProject = async (req, res) => {
+  console.log(req.body)
   try {
     const newProject = await projectModel.create(req.body)
-
+    
     res.status(200).json(newProject)
   } catch (err) {
     res.status(500).json(err)
@@ -22,7 +23,6 @@ exports.addProject = async (req, res) => {
 
 exports.getProjectById = async (req, res) => {
   try {
-
     const project = await projectModel.findById(req.params.id)
 
     res.status(200).json(result)
@@ -65,6 +65,4 @@ exports.addLikes = async (req, res) => {
 
     res.status(200).json(newProject)
   } catch (err) {
-    res.status(500).json(err)
-  }
-}
+    res.status(500).js
