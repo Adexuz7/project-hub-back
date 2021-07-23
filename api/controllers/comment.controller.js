@@ -1,26 +1,27 @@
 // const Comment = require('../models/comment.model')
 const { projectModel } = require('../models/project.model')
 
-exports.createComment = (req, res) => {
-  projectModel
-    .findById(req.params.id)
-    .then((project) => {
-      const comment = {
-        comment: req.body.comment,
-        author: req.body.authorId,
-        date: new Date()
-      }
-      project.comments.push(comment)
-      project.save(err => {
-        if (err) {
-          res.status(500).send(err)
-        } else {
-          res.status(200).json(project)
-        }
-      })
-    })
-    .catch((err) => { res.json(err) })
-}
+// NOW IN PROJECT CONTROLLER
+// exports.createComment = (req, res) => {
+//   projectModel
+//     .findById(req.params.id)
+//     .then((project) => {
+//       const comment = {
+//         comment: req.body.comment,
+//         author: res.locals.user._id,
+//         date: new Date()
+//       }
+//       project.comments.push(comment)
+//       project.save(err => {
+//         if (err) {
+//           res.status(500).send(err)
+//         } else {
+//           res.status(200).json(project)
+//         }
+//       })
+//     })
+//     .catch((err) => { res.json(err) })
+// }
 
 exports.deleteComment = (req, res) => {
   projectModel

@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const { createComment } = require('../controllers/comment.controller')
 const { deleteComment } = require('../controllers/comment.controller')
 const { checkAuth } = require('../utils/index')
 
@@ -10,14 +9,15 @@ const {
   getProjectById,
   updateProjectById,
   deleteProjectById,
-  addLikes
+  addLikes,
+  commentProject
 //  deleteComment
 } = require('../controllers/project.controller')
 
 router.get('/', getAllProjects)
 router.get('/:id', getProjectById)
 router.post('/', addProject)
-router.post('/:id/comments', createComment)
+router.post('/:id/comments', commentProject)
 router.put('/likes/:projectId', checkAuth, addLikes)
 router.put('/:id', updateProjectById)
 router.delete('/:id', deleteProjectById)

@@ -67,3 +67,21 @@ exports.addLikes = async (req, res) => {
     res.status(500).json(err)
   }
 }
+
+exports.commentProject = async (req, res) => {
+  try {
+    const project = await projectModel.findById(req.params.id)
+    const comment = {
+      comment: req.body.comment,
+      author: req.body.author,
+      date: new Date()
+    }
+
+    project.comments.push(comment)
+    await project.save()
+
+    res.status(200).json(project)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
