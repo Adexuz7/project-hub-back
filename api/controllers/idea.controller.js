@@ -12,7 +12,7 @@ exports.getAllIdeas = async (req, res) => {
 
 exports.getIdea = async (req, res) => {
   try {
-    const idea = await IdeaModel.findById(req.params.id)
+    const idea = await IdeaModel.findById(req.params.id).populate('projects')
     res.status(200).json(idea)
   } catch (err) {
     res.status(500).json(err)
