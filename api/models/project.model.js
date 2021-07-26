@@ -25,24 +25,17 @@ const projectSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'ideas'
   }],
-  requirements: {
-    type: Array,
-    required: true
-  },
   team: {
     type: Array,
   },
   date: {
     type: Date,
-    required: true
+    required: true,
+    default: Date.now(),
   },
   repository: {
     type: String,
 
-  },
-  issues: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'is'
   }
 })
 
