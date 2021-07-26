@@ -6,7 +6,7 @@ exports.checkAuth = (req, res, next) => {
     if (err) res.status(403).json('Token not valid')
 
     UserModel
-      .findOne({ email: token.email })
+      .findOne({ email: token.email }).populate('ideas')
       .populate('teams')
       .then(user => {
         if (user) {
