@@ -9,7 +9,7 @@ exports.getAllUsers = (req, res) => {
 
 exports.getUser = (req, res) => {
   UserModel
-    .findById(req.params.userId)
+    .findById(req.params.userId).populate('ideas')
     .then(user => res.status(200).json(user))
     .catch(err => res.status(500).json(err))
 }
