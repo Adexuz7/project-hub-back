@@ -17,7 +17,7 @@ const {
 router.get('/', getAllProjects)
 router.get('/:id', getProjectById)
 router.post('/', addProject)
-router.post('/:id/comments', commentProject)
+router.post('/:id/comments', checkAuth, commentProject)
 router.put('/likes/:projectId', checkAuth, addLikes)
 router.put('/:id', updateProjectById)
 router.delete('/:id', deleteProjectById)

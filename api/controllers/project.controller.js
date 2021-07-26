@@ -73,7 +73,7 @@ exports.commentProject = async (req, res) => {
     const project = await projectModel.findById(req.params.id)
     const comment = {
       comment: req.body.comment,
-      author: req.body.author,
+      author: res.locals.user._id,
       date: new Date()
     }
 
