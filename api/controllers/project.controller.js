@@ -25,7 +25,7 @@ exports.getProjectById = async (req, res) => {
   try {
     const project = await projectModel.findById(req.params.id)
 
-    res.status(200).json(project)
+    res.status(200).json(result)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -45,7 +45,7 @@ exports.deleteProjectById = async (req, res) => {
   try {
     const project = await projectModel.findByIdAndRemove(req.params.id)
 
-    res.status(200).json(result)
+    res.status(200).json(project)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -65,4 +65,6 @@ exports.addLikes = async (req, res) => {
 
     res.status(200).json(newProject)
   } catch (err) {
-    res.status(500).js
+    res.status(500).json(err)
+  }
+}
