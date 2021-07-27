@@ -14,7 +14,7 @@ exports.addProject = async (req, res) => {
   console.log(req.body)
   try {
     const newProject = await projectModel.create(req.body)
-    
+
     res.status(200).json(newProject)
   } catch (err) {
     res.status(500).json(err)
@@ -67,7 +67,6 @@ exports.addLikes = async (req, res) => {
   } catch (err) {
     res.status(500).json(err)
   }
-<<<<<<< HEAD
 }
 
 exports.commentProject = async (req, res) => {
@@ -87,6 +86,3 @@ exports.commentProject = async (req, res) => {
     res.status(500).json(err)
   }
 }
-=======
-}
->>>>>>> 069c7a1b25ae171050e88f00144d13f0931ef139

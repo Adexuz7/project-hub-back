@@ -16,7 +16,21 @@ exports.createTeam = async (req, res) => {
     res.status(500).json(err)
   }
 }
-
+exports.getTeamByUserId = async (req, res) => {
+  try {
+    const user = await res.locals.user.populate(
+      {
+        path: 'teams',
+        populate: {
+          path: 'teams.members',
+          model: 'users'
+        }
+      })
+    res.status(200).json(user.teams)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 exports.addMyselfToTeam = (req, res) => {
   TeamModel
     .findOneAndUpdate(req.params.teamId)
@@ -32,7 +46,7 @@ exports.addMyselfToTeam = (req, res) => {
     .catch(err => res.status(500).json(err))
 }
 
-exports.inviteMemberToTeam = (req, res) => {
+exports.addMemberToTeam = (req, res) => {
   TeamModel
     .findOne(req.params.userName)
 }

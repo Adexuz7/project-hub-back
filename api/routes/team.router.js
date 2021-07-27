@@ -4,15 +4,13 @@ const { checkAuth } = require('../utils/index')
 const {
   createTeam,
   getTeamByUserId,
-  addMyselfToTeam,
   getTeamById,
-  leaveTeam
+  addMemberToTeam
 } = require('../controllers/team.controller')
 
-router.get('/:teamId', getTeamById)
-router.get('/')
+router.get('/', checkAuth, getTeamByUserId)
+router.get('/:teamId', checkAuth, getTeamById)
+router.put('/:teamId/users/:userId', checkAuth, addMemberToTeam)
 router.post('/', checkAuth, createTeam)
-router.put('/:teamId', checkAuth, addMyselfToTeam)
-router.put('/', checkAuth, leaveTeam)
 
 exports.teamRouter = router

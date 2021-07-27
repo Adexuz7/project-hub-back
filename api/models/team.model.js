@@ -9,13 +9,14 @@ const teamSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  members: {
-    type: Array,
-    require: true
-  },
-  projects: {
-    type: Array
-  },
+  members: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  }],
+  projects: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'projects'
+  }],
   messages: {
     type: Array
   },
