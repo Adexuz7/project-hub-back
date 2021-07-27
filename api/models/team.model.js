@@ -18,6 +18,9 @@ const teamSchema = new mongoose.Schema({
   },
   messages: {
     type: Array
+  },
+  image: {
+    type: String
   }
 })
 

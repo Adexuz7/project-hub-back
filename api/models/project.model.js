@@ -10,13 +10,14 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  categories: {
-    type: Array,
+  categories: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'categories',
     required: true
-  },
+  }],
   likes:[{
       type: mongoose.Schema.Types.ObjectId,
-      ref:'categories'
+      ref:'users'
     }],
   comments: {
     type: [commentSchema],
@@ -34,7 +35,8 @@ const projectSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: true
+    required: true,
+    default: Date.now()
   },
   repository: {
     type: String,
