@@ -26,7 +26,7 @@ api
           useUnifiedTopology: true
         }, err => {
           if (err) { throw new Error(err) }
-          console.info('Connected to Mongo Database \n')
+          console.info(`Connected to Mongo Database: ${process.env.MONGO_DB} \n`)
           console.info('>'.repeat(40))
           console.info('   Reboot Server Live')
           console.info(`   PORT: http://localhost:${process.env.PORT}`)
