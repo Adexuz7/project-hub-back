@@ -10,7 +10,7 @@ const {
 
 router.get('/', checkAuth, getTeamByUserId)
 router.get('/:teamId', checkAuth, getTeamById)
-router.put('/:teamId/users/:userId', checkAuth, addMemberToTeam)
+router.put('/:teamId/users/:userName', checkAuth, addMemberToTeam)
 router.post('/', checkAuth, createTeam)
 
 exports.teamRouter = router

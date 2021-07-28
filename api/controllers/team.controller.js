@@ -1,9 +1,12 @@
 // const { findByIdAndUpdate, findById } = require('../models/project.model')
 const { TeamModel } = require('../models/team.model')
+const { UserModel } = require('../models/user.model')
+
 
 exports.createTeam = async (req, res) => {
   const user = res.locals.user
   try {
+    req.body.members = []
     req.body.members.push(user._id)
 
     const team = await TeamModel.create(req.body)
@@ -18,45 +21,31 @@ exports.createTeam = async (req, res) => {
 }
 exports.getTeamByUserId = async (req, res) => {
   try {
-    const user = await res.locals.user.populate(
-      {
-        path: 'teams',
-        populate: {
-          path: 'teams.members',
-          model: 'users'
-        }
-      })
+    const user = await res.locals.user.populate('teams')
+    for (let i = 0; i < user.teams.length; i++) {
+      const members = user.teams[i].members
+      for (let j = 0; j < members.length; j++) {
+        members[j] = await UserModel.findById(members[j])
+      }
+    }
+
     res.status(200).json(user.teams)
   } catch (err) {
     res.status(500).json(err)
   }
 }
-exports.addMyselfToTeam = (req, res) => {
-  TeamModel
-    .findOneAndUpdate(req.params.teamId)
-    .then(team => {
-      if (team.members.includes(res.locals.user.id)) {
-        return res.status(200).json('User alreay in team')
-      } else if (team.members.includes(res.locals.user.id) === false) {
-        team.members.push(res.locals.user.id)
-        team.save()
-        return res.status(200).json('User added')
-      }
-    })
-    .catch(err => res.status(500).json(err))
+// --> Working
+// --- To check
+exports.addMemberToTeam = async (req, res) => {
+  try {
+    const { id } = await UserModel.findOne({ userName: req.params.userName }, '_id')
+    const team = await TeamModel.findById(req.params.teamId)
+    team.members.push(id)
+    await team.save()
+    res.status(200).json(team.members)
+  } catch (err) { res.status(500).json(err) }
 }
 
-exports.addMemberToTeam = (req, res) => {
-  TeamModel
-    .findOne(req.params.userName)
-}
-
-exports.leaveTeam = (req, res) => {
-  TeamModel
-    .findOneAndUpdate(res.locals.user.id)
-    .then(team => res.status(200).send('You leave the team, sadly'))
-    .catch(err => res.status(500).json(err))
-}
 
 exports.getTeamById = (req, res) => {
   TeamModel
