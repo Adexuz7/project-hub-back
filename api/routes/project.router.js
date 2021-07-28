@@ -19,7 +19,7 @@ router.get('/:id', getProjectById)
 router.post('/', addProject)
 router.post('/:id/comments', checkAuth, commentProject)
 router.put('/likes/:projectId', checkAuth, addLikes)
-router.put('/:id', updateProjectById)
+router.put('/:id', checkAuth, updateProjectById)
 router.delete('/:id', deleteProjectById)
 router.delete('/:projectId/comments/:commentId', deleteComment)
 

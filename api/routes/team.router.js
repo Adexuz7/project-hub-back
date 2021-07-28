@@ -5,10 +5,12 @@ const {
   createTeam,
   getTeamByUserId,
   getTeamById,
-  addMemberToTeam
+  addMemberToTeam,
+  getAllTeams
 } = require('../controllers/team.controller')
 
 router.get('/', checkAuth, getTeamByUserId)
+router.get('/all', getAllTeams)
 router.get('/:teamId', checkAuth, getTeamById)
 router.put('/:teamId/users/:userName', checkAuth, addMemberToTeam)
 router.post('/', checkAuth, createTeam)

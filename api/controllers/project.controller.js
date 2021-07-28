@@ -26,6 +26,7 @@ exports.getProjectById = async (req, res) => {
       .findById(req.params.id)
       .populate('categories')
       .populate('ideas')
+      .populate('team')
     res.status(200).json(project)
   } catch (err) {
     res.status(500).json(err)

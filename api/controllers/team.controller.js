@@ -1,6 +1,15 @@
 const { TeamModel } = require('../models/team.model')
 const { UserModel } = require('../models/user.model')
 
+exports.getAllTeams = async (req, res) => {
+  try {
+    const allTeams = await TeamModel.find()
+    res.status(200).json(allTeams)
+  } catch(err) {
+    res.status(500).json(err)
+  }
+}
+
 exports.createTeam = async (req, res) => {
   const user = res.locals.user
   try {
