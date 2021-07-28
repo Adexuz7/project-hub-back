@@ -1,7 +1,5 @@
-// const { findByIdAndUpdate, findById } = require('../models/project.model')
 const { TeamModel } = require('../models/team.model')
 const { UserModel } = require('../models/user.model')
-
 
 exports.createTeam = async (req, res) => {
   const user = res.locals.user
@@ -19,6 +17,7 @@ exports.createTeam = async (req, res) => {
     res.status(500).json(err)
   }
 }
+
 exports.getTeamByUserId = async (req, res) => {
   try {
     const user = await res.locals.user.populate('teams')
@@ -34,8 +33,7 @@ exports.getTeamByUserId = async (req, res) => {
     res.status(500).json(err)
   }
 }
-// --> Working
-// --- To check
+
 exports.addMemberToTeam = async (req, res) => {
   try {
     const { id } = await UserModel.findOne({ userName: req.params.userName }, '_id')
@@ -45,7 +43,6 @@ exports.addMemberToTeam = async (req, res) => {
     res.status(200).json(team.members)
   } catch (err) { res.status(500).json(err) }
 }
-
 
 exports.getTeamById = (req, res) => {
   TeamModel
