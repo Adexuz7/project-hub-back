@@ -39,7 +39,6 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'teams'
   }]
-
 })
 
 exports.UserModel = mongoose.model('users', userSchema)

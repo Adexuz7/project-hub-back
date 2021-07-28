@@ -11,6 +11,7 @@ exports.getAllProjects = async (req, res) => {
 }
 
 exports.addProject = async (req, res) => {
+  console.log(req.body)
   try {
     const newProject = await projectModel.create(req.body)
 
@@ -25,7 +26,7 @@ exports.getProjectById = async (req, res) => {
     console.log(req.params)
     const project = await projectModel.findById(req.params.id).populate('ideas')
 
-    res.status(200).json(project)
+    res.status(200).json(result)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
@@ -46,7 +47,7 @@ exports.deleteProjectById = async (req, res) => {
   try {
     const project = await projectModel.findByIdAndRemove(req.params.id)
 
-    res.status(200).json(result)
+    res.status(200).json(project)
   } catch (err) {
     res.status(500).json(err)
   }
