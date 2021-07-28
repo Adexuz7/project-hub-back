@@ -23,12 +23,9 @@ exports.addProject = async (req, res) => {
 
 exports.getProjectById = async (req, res) => {
   try {
-    console.log(req.params)
     const project = await projectModel.findById(req.params.id).populate('ideas')
-
-    res.status(200).json(result)
+    res.status(200).json(project)
   } catch (err) {
-    console.log(err)
     res.status(500).json(err)
   }
 }
