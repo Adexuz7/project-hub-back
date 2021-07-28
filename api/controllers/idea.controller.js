@@ -1,4 +1,5 @@
 const { IdeaModel } = require('../models/idea.model')
+const { projectModel } = require('../models/project.model')
 
 exports.getAllIdeas = async (req, res) => {
   try {
@@ -70,4 +71,19 @@ exports.commentIdea = async (req, res) => {
   } catch (err) {
     res.status(500).json(err)
   }
+}
+
+exports.addProjectToIdea = async (req, res) => {
+  try {
+    const idea = await IdeaModel.findById(req.params.ideaId)
+    const newProject = await projectModel.create(req.body)
+
+    idea.projects.push(newProject._id)
+    await idea.save()
+
+    newProject.ideas.push(idea._id)
+    await newProject.save()
+
+    res.status(200).json(idea)
+  } catch (err) { res.status(500).json(err) }
 }
