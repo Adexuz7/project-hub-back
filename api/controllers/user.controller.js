@@ -18,6 +18,23 @@ exports.getUser = async (req, res) => {
   }
 }
 
+exports.getUsersByQuery = async (req, res) => {
+  console.log('Query', req.query)
+  try {
+    if (req.query.input.length > 0) {
+      const users = await UserModel.find({
+        userName: {
+          $regex: `.*${req.query.input}.*`, $options: 'i'
+        }
+      })
+      console.log(users)
+      res.status(200).json(users)
+    } else { res.status(200).json([]) }
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
 exports.createUser = async (req, res) => {
   try {
     const user = await UserModel.create(req.body)

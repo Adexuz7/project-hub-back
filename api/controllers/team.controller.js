@@ -14,7 +14,7 @@ exports.createTeam = async (req, res) => {
   const user = res.locals.user
   try {
     req.body.members = []
-    req.body.members.push(user._id)
+    req.body.members.push(user)
 
     const team = await TeamModel.create(req.body)
 
