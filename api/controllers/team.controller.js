@@ -5,7 +5,7 @@ exports.getAllTeams = async (req, res) => {
   try {
     const allTeams = await TeamModel.find()
     res.status(200).json(allTeams)
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err)
   }
 }

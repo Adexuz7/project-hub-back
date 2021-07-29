@@ -38,7 +38,11 @@ const userSchema = new mongoose.Schema({
   teams: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'teams'
-  }]
+  }],
+  specialty: {
+    type: String,
+    enum: ['front-end', 'back-end', 'graphic design']
+  }
 })
 
 exports.UserModel = mongoose.model('users', userSchema)

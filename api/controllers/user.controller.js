@@ -26,3 +26,11 @@ exports.createUser = async (req, res) => {
     res.status(500).json(err)
   }
 }
+
+exports.findUserBySpecialty = async (req, res) => {
+  try {
+    console.log(req.params)
+    const usersBySpecialty = await UserModel.find({ specialty: req.params.specialty })
+    res.status(200).json(usersBySpecialty)
+  } catch (err) { res.status(500).json(err) }
+}

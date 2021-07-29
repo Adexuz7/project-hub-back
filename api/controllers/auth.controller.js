@@ -6,7 +6,7 @@ exports.signup = async (req, res) => {
   const hashedPwd = bcrypt.hashSync(req.body.password, 10)
 
   // delete req.body.password
-  UserModel 
+  UserModel
     .findOne({ email: req.body.email })
     .then(user => {
       if (user) {
@@ -17,6 +17,7 @@ exports.signup = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             userName: req.body.userName,
+            specialty: req.body.specialty,
             // ...req.body,
             password: hashedPwd
           })

@@ -55,7 +55,7 @@ exports.deleteProjectById = async (req, res) => {
 
 exports.addLikes = async (req, res) => {
   try {
-    const newProject = await projectModel.findById(req.params.projectId)
+    const newProject = await projectModel.findById(req.params.projectId).populate('categories')
 
     if (!newProject.likes.includes(res.locals.user._id)) {
       newProject.likes.push(res.locals.user._id)
@@ -64,9 +64,9 @@ exports.addLikes = async (req, res) => {
     }
 
     await newProject.save()
-
     res.status(200).json(newProject)
   } catch (err) {
+    console.log(err)
     res.status(500).json(err)
   }
 }
