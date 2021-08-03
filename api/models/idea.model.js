@@ -23,6 +23,7 @@ const ideaSchema = new mongoose.Schema({
   },
   author: {
     type: mongoose.Types.ObjectId,
+    ref: 'users',
     required: [true, 'Author is required']
   },
   date: Date,
