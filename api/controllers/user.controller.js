@@ -2,7 +2,10 @@ const { UserModel } = require('../models/user.model')
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.find()
+    const users = await UserModel.find({}, { email: 0, password: 0 })
+      .populate('ideas', 'name')
+      .populate('teams', 'name')
+
     res.status(200).json(users)
   } catch (err) {
     res.status(500).json(err)
@@ -11,7 +14,10 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await UserModel.findById(req.params.userId).populate('ideas')
+    const user = await UserModel.findById(req.params.userId, { email: 0, password: 0 })
+      .populate('ideas', 'name')
+      .populate('teams', 'name')
+
     res.status(200).json(user)
   } catch (err) {
     res.status(500).json(err)
