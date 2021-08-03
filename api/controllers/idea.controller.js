@@ -19,6 +19,13 @@ exports.getIdea = async (req, res) => {
       .populate('author', 'name')
       .populate('categories', 'name')
       .populate('projects', 'name')
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'author',
+          select: 'name'
+        }
+      })
 
     res.status(200).json(idea)
   } catch (err) {
