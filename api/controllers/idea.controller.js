@@ -3,7 +3,7 @@ const { projectModel } = require('../models/project.model')
 
 exports.getAllIdeas = async (req, res) => {
   try {
-    const ideas = await IdeaModel.find()
+    const ideas = await IdeaModel.find().populate('categories')
 
     res.status(200).json(ideas)
   } catch (err) {
@@ -13,7 +13,10 @@ exports.getAllIdeas = async (req, res) => {
 
 exports.getIdea = async (req, res) => {
   try {
-    const idea = await IdeaModel.findById(req.params.id).populate('projects')
+    const idea = await IdeaModel.findById(req.params.id)
+      .populate('projects')
+      .populate('categories')
+
     res.status(200).json(idea)
   } catch (err) {
     res.status(500).json(err)

@@ -10,10 +10,11 @@ const ideaSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Description is required']
   },
-  categories: {
-    type: [mongoose.Types.ObjectId],
+  categories: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'categories',
     required: [true, 'Category is required']
-  },
+  }],
   difficulty: {
     type: String,
     // enum:['easy', 'medium', 'hard'],
@@ -25,14 +26,14 @@ const ideaSchema = new mongoose.Schema({
     required: [true, 'Author is required']
   },
   date: Date,
-  likes:[{
+  likes: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref:'users'
-  }], 
+    ref: 'users'
+  }],
   comments: [commentSchema],
   projects: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref:'projects'
+    ref: 'projects'
   }]
 })
 
