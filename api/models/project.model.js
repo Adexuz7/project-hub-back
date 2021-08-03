@@ -19,9 +19,7 @@ const projectSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   }],
-  comments: {
-    type: [commentSchema]
-  },
+  comments: [commentSchema],
   ideas: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'ideas'

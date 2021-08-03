@@ -22,11 +22,18 @@ exports.addProject = async (req, res) => {
 
 exports.getProjectById = async (req, res) => {
   try {
-    const project = await projectModel
-      .findById(req.params.id)
+    const project = await projectModel.findById(req.params.id)
       .populate('categories')
       .populate('ideas')
       .populate('team')
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'author',
+          select: 'name image'
+        }
+      })
+
     res.status(200).json(project)
   } catch (err) {
     res.status(500).json(err)
