@@ -23,7 +23,7 @@ exports.getIdea = async (req, res) => {
         path: 'comments',
         populate: {
           path: 'author',
-          select: 'name'
+          select: 'name image'
         }
       })
 
